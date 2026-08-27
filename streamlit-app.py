@@ -1,33 +1,39 @@
 import streamlit as st
 import random
 
-st.set_page_config(page_title="مولد النص بالذكاء الاصطناعي", page_icon="🤖", layout="centered")
+st.set_page_config(page_title="Générateur de Texte IA", page_icon="🤖", layout="centered")
 
-st.markdown("<h1 style='text-align: center;'>🤖 مولد النص بالذكاء الاصطناعي 2026</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center;'>اكتب أي موضوع و الـ AI سيكتب لك فقرة كاملة</p>", unsafe_allow_html=True)
+# التصميم احترافي
+st.markdown("""
+    <style>
+    .stApp {background-color: #0E1117;}
+    h1 {color: #FFFFFF; text-align: center;}
+    p {color: #AAAAAA; text-align: center;}
+    </style>
+""", unsafe_allow_html=True)
 
-sujet = st.text_input("الموضوع ديالك:")
+st.title("🤖 Générateur de Texte par IA 2026")
+st.markdown("### *L'IA rédige un paragraphe complet sur n'importe quel sujet pour vous*")
 
-if st.button("✨ توليد النص"):
+sujet = st.text_input("**Votre sujet:**", placeholder="Ex: L'intelligence Artificielle, Le changement climatique...")
+
+if st.button("✨ Générer le texte", use_container_width=True, type="primary"):
     if sujet:
-        # هنا حطينا فقرة جاهزة. من بعد نقدر نربطوها بـ AI حقي
         reponses = [
-            f"موضوع {sujet} من المواضيع المهمة جدا في وقتنا الحالي. حيث أن {sujet} يلعب دور كبير في حياتنا اليومية ويؤثر على طريقة تفكيرنا وعملنا. العديد من الخبراء يرون أن فهم {sujet} بشكل جيد يساعدنا على التطور وتحقيق أهدافنا. وفي المستقبل سيكون لـ {sujet} تأثير أكبر وأهمية متزايدة في جميع المجالات.",
+            f"Le sujet de **{sujet}** est extrêmement important dans notre société actuelle. En effet, **{sujet}** joue un rôle majeur dans notre quotidien et influence notre façon de penser et de travailler. De nombreux experts considèrent que comprendre **{sujet}** est essentiel pour innover et progresser. À l'avenir, **{sujet}** aura un impact encore plus grand dans tous les domaines.",
             
-            f"عندما نتحدث عن {sujet} يجب أن نعرف أنه ليس مجرد كلمة بل هو مفهوم واسع. {sujet} يتطلب منا البحث والتعلم المستمر. الكثير من الناس يهتمون بـ {sujet} لأنه يساعدهم على حل المشاكل وتطوير مهاراتهم. لذلك من الضروري أن نعطي {sujet} الأهمية التي يستحقها.",
-            
-            f"{sujet} هو واحد من أهم العناصر اللي خاصنا نركزو عليها. السبب هو أن {sujet} مرتبط مباشرة بالنجاح والتقدم. إذا فهمنا {sujet} مزيان غادي نقدرو نوصلو لنتائج أفضل. ولهذا كننصحو أي واحد بغا يتطور أنه يبدأ بتعلم {sujet}."
+            f"Lorsque nous parlons de **{sujet}**, nous abordons un concept très vaste. **{sujet}** nécessite une recherche et un apprentissage continu. Beaucoup de personnes s'intéressent à **{sujet}** car cela leur permet de résoudre des problèmes et de développer de nouvelles compétences. Il est donc crucial d'accorder à **{sujet}** l'importance qu'il mérite."
         ]
         
         texte_genere = random.choice(reponses)
-        st.success("النص ديالك واجد:")
+        st.success("✅ Votre texte est prêt:")
         st.write(texte_genere)
         
         st.download_button(
-            label="📄 تحميل النص",
+            label="📄 Télécharger en .txt",
             data=texte_genere,
-            file_name=f"texte_{sujet}.txt",
+            file_name=f"Texte_{sujet}.txt",
             mime="text/plain"
         )
     else:
-        st.error("المرجو كتابة الموضوع أولا")
+        st.error("⚠️ Veuillez entrer un sujet avant de générer")
